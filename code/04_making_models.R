@@ -12,25 +12,7 @@ library(tidyverse)
 library(labelled)
 
 # Subset Data to only include patients that are hospitalized
-# Coerce variables as factors
-data_hosp <- data %>% filter(patient_type=="hospitalization") %>%
-  mutate(
-    sex = as.factor(sex),
-    pregnant = as.factor(pregnant),
-    obesity = as.factor(obesity),
-    diabetes = as.factor(diabetes),
-    copd = as.factor(copd),
-    inmsupr = as.factor(inmsupr),
-    hipertension = as.factor(hipertension),
-    cardiovascular = as.factor(cardiovascular),
-    renal_chronic = as.factor(renal_chronic),
-    other_disease = as.factor(other_disease),
-    pneumonia = as.factor(pneumonia),
-    tobacco = as.factor(tobacco),
-    asthma = as.factor(asthma),
-    intubed = as.factor(intubed),
-    icu = as.factor(icu)
-  )
+data_hosp <- data %>% filter(patient_type=="hospitalization")
 
 # Add labels back to data
 var_label(data_hosp) <- list(

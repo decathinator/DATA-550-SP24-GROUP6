@@ -27,6 +27,24 @@ data <- data %>%
     TRUE ~ 1
   ))
 
+# Coerce variables as factors
+data<- data %>% mutate(
+  sex = as.factor(sex),
+  pregnant = as.factor(pregnant),
+  obesity = as.factor(obesity),
+  diabetes = as.factor(diabetes),
+  copd = as.factor(copd),
+  inmsupr = as.factor(inmsupr),
+  hipertension = as.factor(hipertension),
+  cardiovascular = as.factor(cardiovascular),
+  renal_chronic = as.factor(renal_chronic),
+  other_disease = as.factor(other_disease),
+  pneumonia = as.factor(pneumonia),
+  tobacco = as.factor(tobacco),
+  asthma = as.factor(asthma),
+  intubed = as.factor(intubed),
+  icu = as.factor(icu)
+)
 
 # Add labels to all the variables
 var_label(data) <- list(
