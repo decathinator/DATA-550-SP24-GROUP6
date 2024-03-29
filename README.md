@@ -7,12 +7,13 @@
 - adds labels for all variables
 - creates `data/data_clean.rds`
 
-
 `code/02_making_tables.R`
-
+- reads `data/covid_sub.csv`
+- creates tables `output/tables_diabetes_died`, `output/table_eda`, `output/table_pneumonia_died`, `output/table_sex_died`
 
 `code/03_making_plots.R`
-
+- reads `data/data_clean.rds`
+- creates plots `output/Medical_History_home.png`, `output/Medical_History_hospitalized.png`, `output/Respiratory_Health_home.png`, `output/Respiratory_Health_hospitalized.png`
 
 `code/04_making_models.R`
 - reads `data/data_clean.rds`
