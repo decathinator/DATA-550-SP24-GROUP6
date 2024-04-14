@@ -10,6 +10,7 @@ data <- readRDS(
 library(gtsummary)
 library(tidyverse)
 library(labelled)
+library(car)
 
 # Subset Data to only include patients that are hospitalized
 data_hosp <- data %>% filter(patient_type=="hospitalization")
