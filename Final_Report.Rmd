@@ -1,0 +1,88 @@
+---
+title: "Data 550 Midterm Project Group 6"
+author: Cathy, Siddhi, Zhuohan, Veronica, Lauren
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output: html_document
+params:
+  production: FALSE
+---
+```{r, read-config, include=FALSE}
+config_list <- config::get(file = here::here("config.yml"))
+```
+
+```{r, chunk-opts, include = FALSE, message = FALSE, warning = FALSE, eval = config_list$production}
+library(knitr)
+library(gtsummary)
+opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE
+)
+here::i_am("Final_Report.Rmd")
+```
+
+```{r, load-data, echo = FALSE}
+data <- readRDS(here::here("data", "data_clean.rds"))
+```
+
+# Descriptive Analysis
+
+## Tabular analysis
+
+Exploratory data analysis for the entire dataset is below.
+
+```{r, table1}
+table_eda <- readRDS(here::here("output", "table_eda.rds"))
+kable(table_eda)
+
+table_diabetes_died <- readRDS(here::here("output", "table_diabetes_died.rds"))
+kable(table_diabetes_died)
+
+table_pneumonia_died <- readRDS(here::here("output", "table_pneumonia_died.rds"))
+kable(table_pneumonia_died)
+
+table_sex_died <- readRDS(here::here("output", "table_sex_died.rds"))
+kable(table_sex_died)
+```
+
+## Graphical analysis
+
+Below we report medical history and respiratory health outcomes for those who returned home and those who were hospitalized.
+
+```{r, plot-data}
+knitr::include_graphics(
+  here::here("output", "Medical_History_home.png")
+)
+
+knitr::include_graphics(
+  here::here("output", "Respiratory_Health_home.png")
+)
+
+knitr::include_graphics(
+  here::here("output", "Medical_History_hospitalized.png")
+)
+
+knitr::include_graphics(
+  here::here("output", "Respiratory_Health_hospitalized.png")
+)
+
+```
+
+# Regression Analysis
+
+```{r, load-models}
+both_regression_tables_filename <- paste0(
+  "both_regression_tables", config_list$patient_type, ".rds"
+)
+
+models <- readRDS(here("output", both_regression_tables_filename))
+models[[1]] %>% 
+  modify_caption(paste0("Logistic Regression of Respiratory Health and COVID Diagnosis, 
+                        Population = ", config_list$patient_type)) %>%
+  as_gt()
+  
+models[[2]] %>% 
+  modify_caption(paste0("Logistic Regression of Medical History and COVID Diagnosis, 
+                        Population = ", config_list$patient_type)) %>%
+  as_gt()
+```
+
+

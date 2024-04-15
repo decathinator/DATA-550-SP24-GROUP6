@@ -1,0 +1,11 @@
+default:
+  production: TRUE
+  patient_type: "hospitalization"
+
+covid_athome:
+  production: TRUE
+  patient_type: "returned home"
+
+test:
+  production: FALSE
+  patient_type: "hospitalization"

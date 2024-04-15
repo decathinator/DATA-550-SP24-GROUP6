@@ -12,8 +12,17 @@ library(tidyverse)
 library(labelled)
 library(car)
 
+WHICH_CONFIG <- Sys.getenv("WHICH_CONFIG")
+config_list <- config::get(
+  config = WHICH_CONFIG
+)
+
+# read arguments passed from command line
+args <- commandArgs(TRUE)
+
+
 # Subset Data to only include patients that are hospitalized
-data_hosp <- data %>% filter(patient_type=="hospitalization")
+data_hosp <- data %>% filter(patient_type==config_list$patient_type)
 
 # Add labels back to data
 var_label(data_hosp) <- list(
@@ -74,7 +83,8 @@ both_models <- list(
 # Save the model list to output folder
 saveRDS(
   both_models,
-  file = here::here("output/both_models.rds")
+  file = here::here(paste0(
+    "output/both_models", config_list$patient_type, ".rds"))
 )
 
 # Put both regression table objects in a list
@@ -86,5 +96,6 @@ both_regression_tables <- list(
 # Save the regression table list to output folder
 saveRDS(
   both_regression_tables,
-  file = here::here("output/both_regression_tables.rds")
+  file = here::here(paste0(
+    "output/both_regression_tables", config_list$patient_type, ".rds"))
 )

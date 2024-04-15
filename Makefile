@@ -1,3 +1,7 @@
+Final_Report_config_${WHICH_CONFIG}.html: code/05_render_report.R data/data_clean.rds Final_Report.Rmd make_tables make_plots make_models
+	Rscript code/05_render_report.R
+
+
 data/data_clean.rds: code/01_data_cleaning.R data/covid_sub.csv
 	Rscript code/01_data_cleaning.R
 	
@@ -49,4 +53,4 @@ install:
 	
 .PHONY: clean
 clean:
-	rm -f data/*.rds output/*.rds output/*.png
+	rm -f *.html data/*.rds output/*.rds output/*.png 
