@@ -53,7 +53,7 @@ var_label(data_hosp) <- list(
 )
 
 # Create a model based on patient respiratory health for patients hospitalized
-respiratory_model_hosp <- glm(classification_new ~ pneumonia + tobacco + asthma + copd + intubed, 
+respiratory_model_hosp <- glm(classification_new ~ pneumonia + tobacco + asthma + copd, 
                               family = "binomial", data = data_hosp)
 
 # Create a model based on patient medical history and demographics
