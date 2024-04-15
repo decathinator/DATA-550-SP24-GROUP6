@@ -26,7 +26,7 @@
 
 
 ## Description of Makefile
-- include rule to make final report based on config status `Final_Report_config_${WHICH_CONFIG}.html`. To make the file, simply do `make Final_Report_config_${WHICH_CONFIG}.html`
+- include rule to make final report based on config status `Final_Report_config_${WHICH_CONFIG}.html`. To make the file, simply first set WHICH_CONFIG in the system environment and then `make Final_Report_config_${WHICH_CONFIG}.html`
 - include rule to make `data/data_clean.rds`
 - include rule `make_tables` to make the following tables: `output/tables_diabetes_died.rds` `output/table_eda.rds` `output/table_pneumonia_died.rds`` output/table_sex_died.rds`
 - include rule `make_plots ` to make the following plots: `output/Medical_History_home.png` `output/Medical_History_hospitalized.png` `output/Respiratory_Health_home.png` `output/Respiratory_Health_hospitalized.png`
